@@ -1,14 +1,14 @@
 
 import pandas as pd
 
-# Function to load, extract data by column ranges, and save to separate sheets
+# Function to load, extract data using column ranges, and save to separate sheets
 def separate_encoded_data(file_path, output_file_path):
     # Load the data from the provided path
     data = pd.read_excel(file_path)
 
     # Define the column ranges for each construct
-    if data.shape[1] >= 35:  # Check if the DataFrame has at least 41 columns
-        # Define the column ranges for each construct
+    if data.shape[1] >= 35: 
+        # column ranges for each construct
         social_media_use_cols = data.columns[0:13]   # 13 columns (1 to 13)
         happiness_cols = data.columns[13:21]         # 8 columns (14 to 21)
         loneliness_cols = data.columns[21:29]        # 8 columns (22 to 29)
@@ -20,7 +20,7 @@ def separate_encoded_data(file_path, output_file_path):
         loneliness_data = data[loneliness_cols]
         social_anxiety_data = data[social_anxiety_cols]
 
-        # Save the extracted data to separate sheets in a new Excel file
+        # Save extracted data to separate sheets in a new Excel file
         with pd.ExcelWriter(output_file_path) as writer:
             social_media_use_data.to_excel(writer, sheet_name='Social Media Use', index=False)
             happiness_data.to_excel(writer, sheet_name='Happiness', index=False)
